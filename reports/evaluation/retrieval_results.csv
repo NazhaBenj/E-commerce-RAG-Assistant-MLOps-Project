@@ -1,0 +1,5 @@
+﻿id,question,expected_status,relevant_chunks,recall_at_5,precision_at_5,mrr,retrieved_chunks
+Q001,Quelle est la politique de garantie des produits ?,answered,"['JUMIA-008-CHUNK-0021', 'JUMIA-008-CHUNK-0020']",1.0,0.4,1.0,"['JUMIA-008-CHUNK-0020', 'JUMIA-007-CHUNK-0047', 'JUMIA-006-CHUNK-0026', 'JUMIA-008-CHUNK-0021', 'JUMIA-008-CHUNK-0009']"
+Q002,Quels sont les jours ouvrés pris en compte pour la livraison au Maroc ?,answered,['JUMIA-004-CHUNK-0003'],1.0,0.2,0.5,"['JUMIA-003-CHUNK-0012', 'JUMIA-004-CHUNK-0003', 'JUMIA-003-CHUNK-0008', 'JUMIA-004-CHUNK-0002', 'JUMIA-005-CHUNK-0011']"
+Q003,Les frais Wafacash sont-ils remboursables ?,answered,['JUMIA-005-CHUNK-0028'],1.0,0.2,0.2,"['JUMIA-006-CHUNK-0024', 'JUMIA-008-CHUNK-0028', 'JUMIA-008-CHUNK-0032', 'JUMIA-002-CHUNK-0002', 'JUMIA-005-CHUNK-0028']"
+Q004,Quelle est la capitale de la France ?,out_of_scope,[],,,,"['JUMIA-006-CHUNK-0092', 'JUMIA-007-CHUNK-0006', 'JUMIA-006-CHUNK-0031', 'JUMIA-007-CHUNK-0005', 'JUMIA-006-CHUNK-0098']"

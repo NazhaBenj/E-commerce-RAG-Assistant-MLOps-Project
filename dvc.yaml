@@ -1,0 +1,65 @@
+stages:
+
+  # 1. Nettoyage et préparation du corpus
+  prepare_corpus:
+    cmd: python -m src.ingestion.process_corpus
+    deps:
+      - data/raw
+      - data/source_manifest.csv
+      - src/ingestion/process_corpus.py
+      - src/ingestion/html_cleaner.py
+    outs:
+      - data/processed/source_text
+
+  # 2. Découpage des documents en chunks
+  chunk:
+    cmd: >
+      python -m src.rag.process_chunks
+      --chunk-size ${chunking.chunk_size}
+      --chunk-overlap ${chunking.chunk_overlap}
+      --output data/processed/chunks.jsonl
+    deps:
+      - data/source_manifest.csv
+      - data/processed/source_text
+      - src/rag/process_chunks.py
+      - src/rag/chunking.py
+    params:
+      - params.yaml:
+          - chunking.chunk_size
+          - chunking.chunk_overlap
+    outs:
+      - data/processed/chunks.jsonl
+
+  # 3. Construction de l'index principal
+  build_index:
+    cmd: >
+      python -m src.rag.build_index
+      --chunks data/processed/chunks.jsonl
+      --index indexes/chroma_ecommerce
+    deps:
+      - data/processed/chunks.jsonl
+      - src/rag/build_index.py
+      - src/rag/embeddings.py
+      - src/rag/vector_store.py
+    outs:
+      - indexes/chroma_ecommerce
+
+  # 4. Évaluation comparative du retrieval A/B
+  evaluate_retrieval:
+    cmd: python -m src.evaluation.retrieval_evaluation --config all
+    deps:
+      - data/evaluation/questions.yaml
+      - data/processed/experiments/chunks_300_50.jsonl
+      - data/processed/experiments/chunks_500_100.jsonl
+      - indexes/experiments/chroma_300_50
+      - indexes/experiments/chroma_500_100
+      - src/evaluation/retrieval_evaluation.py
+      - src/rag/hybrid_retriever.py
+      - src/rag/retriever.py
+      - src/rag/embeddings.py
+      - src/rag/vector_store.py
+    outs:
+      - reports/evaluation/chunk_300_50_results.json
+      - reports/evaluation/chunk_300_50_results.csv
+      - reports/evaluation/chunk_500_100_results.json
+      - reports/evaluation/chunk_500_100_results.csv

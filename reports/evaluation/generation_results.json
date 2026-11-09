@@ -1,0 +1,94 @@
+{
+    "summary": {
+        "total_questions": 4,
+        "successful_evaluations": 4,
+        "answered_questions": 3,
+        "status_accuracy": 1.0,
+        "faithfulness_proxy": 0.48169934640522866,
+        "answer_relevance_proxy": 0.42771804062126645,
+        "citation_rate": 0.6666666666666666
+    },
+    "details": [
+        {
+            "id": "Q001",
+            "question": "Où peut-on trouver les informations sur la garantie d'un produit acheté sur Jumia Maroc, et que couvre cette garantie en cas de dysfonctionnement ?",
+            "status": "answered",
+            "expected_status": "answered",
+            "status_match": true,
+            "answer": "Selon les informations disponibles dans le document JUMIA-008, les informations relatives à la garantie sont affichées sur chaque fiche de produit. \n\nEn cas de dysfonctionnement, la garantie ne couvre pas le produit, mais plutôt la garantie du vendeur.",
+            "retrieved_chunks": 5,
+            "used_chunks": 3,
+            "faithfulness": 0.5333333333333333,
+            "answer_relevance": 0.5161290322580646,
+            "citation_rate": 0.0,
+            "retrieved_source_ids": [
+                "JUMIA-006-CHUNK-0091",
+                "JUMIA-008-CHUNK-0020",
+                "JUMIA-008-CHUNK-0021"
+            ],
+            "cited_ids": []
+        },
+        {
+            "id": "Q002",
+            "question": "Quels jours de la semaine sont inclus dans le calcul des délais de livraison au Maroc, et quels jours sont exclus ?",
+            "status": "answered",
+            "expected_status": "answered",
+            "status_match": true,
+            "answer": "Selon le document [CHUNK_ID: JUMIA-004-CHUNK-0003], les jours ouvrés comptent du Lundi au Samedi, et ils sont inclus dans le calcul des délais de livraison au Maroc. Les jours fériés et le Dimanche sont exclus du calcul.\n\nEn outre, le document [CHUNK_ID: JUMIA-003-CHUNK-0012] précise que le Dimanche n'est pas un jour de livraison au Maroc et n'est donc pas pris en compte dans le calcul de la date de livraison estimée.\n\nPar conséquent, les jours inclus dans le calcul des délais de livraison au Maroc sont les jours ouvrés de la semaine, à savoir : Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi.",
+            "retrieved_chunks": 5,
+            "used_chunks": 5,
+            "faithfulness": 0.5,
+            "answer_relevance": 0.4444444444444445,
+            "citation_rate": 1.0,
+            "retrieved_source_ids": [
+                "JUMIA-003-CHUNK-0008",
+                "JUMIA-003-CHUNK-0012",
+                "JUMIA-004-CHUNK-0002",
+                "JUMIA-004-CHUNK-0003",
+                "JUMIA-008-CHUNK-0032"
+            ],
+            "cited_ids": [
+                "JUMIA-003-CHUNK-0012",
+                "JUMIA-004-CHUNK-0003"
+            ]
+        },
+        {
+            "id": "Q003",
+            "question": "Lorsqu'une commande payée par Wafacash est annulée avant son expédition, les frais de service Wafacash sont-ils remboursés ?",
+            "status": "answered",
+            "expected_status": "answered",
+            "status_match": true,
+            "answer": "Selon le document [CHUNK_ID: JUMIA-005-CHUNK-0028], les frais de service Wafacash ne sont pas remboursables en cas d'annulation d'une commande payée par Wafacash avant son expédition. Cela est explicitement précisé dans le document [CHUNK_ID: JUMIA-005-CHUNK-0028].",
+            "retrieved_chunks": 5,
+            "used_chunks": 5,
+            "faithfulness": 0.4117647058823529,
+            "answer_relevance": 0.3225806451612903,
+            "citation_rate": 1.0,
+            "retrieved_source_ids": [
+                "JUMIA-004-CHUNK-0000",
+                "JUMIA-005-CHUNK-0007",
+                "JUMIA-005-CHUNK-0008",
+                "JUMIA-005-CHUNK-0028",
+                "JUMIA-006-CHUNK-0024"
+            ],
+            "cited_ids": [
+                "JUMIA-005-CHUNK-0028"
+            ]
+        },
+        {
+            "id": "Q004",
+            "question": "Quelle est la capitale de la France ?",
+            "status": "out_of_scope",
+            "expected_status": "out_of_scope",
+            "status_match": true,
+            "answer": "Je suis spécialisé dans le support e-commerce de Jumia Maroc. Je peux vous aider concernant les commandes, livraisons, paiements, retours, remboursements et garanties.",
+            "retrieved_chunks": 0,
+            "used_chunks": 0,
+            "faithfulness": 0.0,
+            "answer_relevance": 0.18181818181818182,
+            "citation_rate": 0.0,
+            "retrieved_source_ids": [],
+            "cited_ids": []
+        }
+    ]
+}

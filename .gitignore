@@ -1,0 +1,32 @@
+@"
+# Environnement Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Fichiers temporaires
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Datasets temporaires
+*.tmp
+"@ | Set-Content .gitignore
+
+Add-Content .gitignore "`n# Fichiers temporaires Microsoft Office`n~$*"

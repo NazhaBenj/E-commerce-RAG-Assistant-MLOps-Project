@@ -1,0 +1,146 @@
+schema: '2.0'
+stages:
+  prepare_corpus:
+    cmd: python -m src.ingestion.process_corpus
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 2429f6266054ff5406ae78d023192cc4.dir
+      size: 25324200
+      nfiles: 126
+    - path: data/source_manifest.csv
+      hash: md5
+      md5: 8caa7a9161e9754bbd22c8237af581b3
+      size: 1559
+    - path: src/ingestion/html_cleaner.py
+      hash: md5
+      md5: 96bbfbe087b136b91bcfa542edbf43f6
+      size: 994
+    - path: src/ingestion/process_corpus.py
+      hash: md5
+      md5: d3b6bc2a6a74d555830b24af2dd1bc78
+      size: 1059
+    outs:
+    - path: data/processed/source_text
+      hash: md5
+      md5: 651a04babbaa51c18d8c775036630460.dir
+      size: 82667
+      nfiles: 8
+  chunk:
+    cmd: "python -m src.rag.process_chunks --chunk-size 300 --chunk-overlap 50 --output
+      data/processed/chunks.jsonl\n"
+    deps:
+    - path: data/processed/source_text
+      hash: md5
+      md5: 651a04babbaa51c18d8c775036630460.dir
+      size: 82667
+      nfiles: 8
+    - path: data/source_manifest.csv
+      hash: md5
+      md5: 8caa7a9161e9754bbd22c8237af581b3
+      size: 1559
+    - path: src/rag/chunking.py
+      hash: md5
+      md5: 3561216498c578523a6cc37a673ed577
+      size: 3911
+    - path: src/rag/process_chunks.py
+      hash: md5
+      md5: 8da817b549d3d9d1d94a35c9ddfa7a2b
+      size: 3969
+    params:
+      params.yaml:
+        chunking.chunk_overlap: 50
+        chunking.chunk_size: 300
+    outs:
+    - path: data/processed/chunks.jsonl
+      hash: md5
+      md5: ced0c809f9c8d1788290698add7f6c6a
+      size: 178982
+  build_index:
+    cmd: "python -m src.rag.build_index --chunks data/processed/chunks.jsonl --index
+      indexes/chroma_ecommerce\n"
+    deps:
+    - path: data/processed/chunks.jsonl
+      hash: md5
+      md5: ced0c809f9c8d1788290698add7f6c6a
+      size: 178982
+    - path: src/rag/build_index.py
+      hash: md5
+      md5: 89fb76bb559767d684f87d30b4d954b3
+      size: 3301
+    - path: src/rag/embeddings.py
+      hash: md5
+      md5: 2e082e3661684d8fbee7dda426c54c62
+      size: 880
+    - path: src/rag/vector_store.py
+      hash: md5
+      md5: 75b20ae0b5e615514099725ee7ea5248
+      size: 2423
+    outs:
+    - path: indexes/chroma_ecommerce
+      hash: md5
+      md5: 2008b35997eaa42d188d7c5a2a49c424.dir
+      size: 2465792
+      nfiles: 1
+  evaluate_retrieval:
+    cmd: python -m src.evaluation.retrieval_evaluation --config all
+    deps:
+    - path: data/evaluation/questions.yaml
+      hash: md5
+      md5: 38afd9a4bb9e6a3669e1269567e0669d
+      size: 1777
+    - path: data/processed/experiments/chunks_300_50.jsonl
+      hash: md5
+      md5: ced0c809f9c8d1788290698add7f6c6a
+      size: 178982
+    - path: data/processed/experiments/chunks_500_100.jsonl
+      hash: md5
+      md5: f0ab266dab87ba7dc7b1867a708c2bda
+      size: 147147
+    - path: indexes/experiments/chroma_300_50
+      hash: md5
+      md5: 2e26f9971a46712fc9be10c2631ceab1.dir
+      size: 2469888
+      nfiles: 1
+    - path: indexes/experiments/chroma_500_100
+      hash: md5
+      md5: e54d0978328e18b66349a39d5e3f79d0.dir
+      size: 1892352
+      nfiles: 1
+    - path: src/evaluation/retrieval_evaluation.py
+      hash: md5
+      md5: 4d84374d2d307733bd062f8549dbd997
+      size: 11539
+    - path: src/rag/embeddings.py
+      hash: md5
+      md5: 2e082e3661684d8fbee7dda426c54c62
+      size: 880
+    - path: src/rag/hybrid_retriever.py
+      hash: md5
+      md5: 9b7f2b823b02410a3eddeec588026903
+      size: 4148
+    - path: src/rag/retriever.py
+      hash: md5
+      md5: f3df5480c455dc7bc0cc65c279a05645
+      size: 1767
+    - path: src/rag/vector_store.py
+      hash: md5
+      md5: 75b20ae0b5e615514099725ee7ea5248
+      size: 2423
+    outs:
+    - path: reports/evaluation/chunk_300_50_results.csv
+      hash: md5
+      md5: 06a3541a464d46066369667f92d42145
+      size: 1186
+    - path: reports/evaluation/chunk_300_50_results.json
+      hash: md5
+      md5: a79f56ef5223e0d36ec7ac8300faad1b
+      size: 3045
+    - path: reports/evaluation/chunk_500_100_results.csv
+      hash: md5
+      md5: c14a38d1268f672146fab2f09be2ff66
+      size: 1147
+    - path: reports/evaluation/chunk_500_100_results.json
+      hash: md5
+      md5: 7f54e2f9125a47daecb0095511c39e2b
+      size: 2991

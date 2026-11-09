@@ -1,0 +1,42 @@
+
+# Configuration et manipulation des données
+PyYAML
+python-dotenv
+pandas
+numpy
+
+# Document ingestion
+pypdf
+beautifulsoup4
+lxml
+
+# RAG et LLM
+langchain
+langchain-core
+langchain-community
+langchain-ollama
+
+# Embeddings et base vectorielle
+sentence-transformers
+chromadb
+
+# Evaluation
+scikit-learn
+
+# MLOps et versionnement
+mlflow
+dvc
+
+# Interface utilisateur
+streamlit
+
+# Tests et qualité du code
+pytest
+pytest-cov
+ruff
+bandit
+
+
+
+
+rank-bm25==0.2.2

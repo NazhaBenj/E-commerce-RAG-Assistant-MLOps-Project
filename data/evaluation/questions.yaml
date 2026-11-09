@@ -1,0 +1,40 @@
+﻿- id: Q001
+  question: "Où peut-on trouver les informations sur la garantie d'un produit acheté sur Jumia Maroc, et que couvre cette garantie en cas de dysfonctionnement ?"
+  expected_answer: >
+    Les informations relatives à la garantie sont affichées sur chaque fiche produit.
+    En cas d'endommagement ou de dysfonctionnement pendant la période de garantie,
+    le problème relève de la garantie du vendeur et non de la politique de retours.
+  relevant_chunk_ids:
+    - "JUMIA-008-CHUNK-0020"
+    - "JUMIA-008-CHUNK-0021"
+  expected_status: "answered"
+  annotation_basis: "JUMIA-008"
+
+- id: Q002
+  question: "Quels jours de la semaine sont inclus dans le calcul des délais de livraison au Maroc, et quels jours sont exclus ?"
+  expected_answer: >
+    Les jours ouvrés vont du lundi au samedi. Le dimanche et les jours fériés
+    ne sont pas inclus dans le calcul des délais de livraison.
+  relevant_chunk_ids:
+    - "JUMIA-004-CHUNK-0003"
+  expected_status: "answered"
+  annotation_basis: "JUMIA-004"
+
+- id: Q003
+  question: "Lorsqu'une commande payée par Wafacash est annulée avant son expédition, les frais de service Wafacash sont-ils remboursés ?"
+  expected_answer: >
+    Non. Si la commande n'a pas encore été expédiée, elle peut être annulée
+    et remboursée intégralement, mais les frais de service Wafacash ne sont
+    pas remboursables.
+  relevant_chunk_ids:
+    - "JUMIA-005-CHUNK-0028"
+  expected_status: "answered"
+  annotation_basis: "JUMIA-005"
+
+- id: Q004
+  question: "Quelle est la capitale de la France ?"
+  expected_answer: >
+    Cette question ne concerne pas les services et les politiques de Jumia Maroc.
+  relevant_chunk_ids: []
+  expected_status: "out_of_scope"
+  annotation_basis: "Question hors périmètre du corpus."

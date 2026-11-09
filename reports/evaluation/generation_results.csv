@@ -1,0 +1,11 @@
+﻿id,question,status,expected_status,status_match,retrieved_chunks,used_chunks,faithfulness,answer_relevance,citation_rate,answer
+Q001,"Où peut-on trouver les informations sur la garantie d'un produit acheté sur Jumia Maroc, et que couvre cette garantie en cas de dysfonctionnement ?",answered,answered,True,5,3,0.5333333333333333,0.5161290322580646,0.0,"Selon les informations disponibles dans le document JUMIA-008, les informations relatives à la garantie sont affichées sur chaque fiche de produit. 
+
+En cas de dysfonctionnement, la garantie ne couvre pas le produit, mais plutôt la garantie du vendeur."
+Q002,"Quels jours de la semaine sont inclus dans le calcul des délais de livraison au Maroc, et quels jours sont exclus ?",answered,answered,True,5,5,0.5,0.4444444444444445,1.0,"Selon le document [CHUNK_ID: JUMIA-004-CHUNK-0003], les jours ouvrés comptent du Lundi au Samedi, et ils sont inclus dans le calcul des délais de livraison au Maroc. Les jours fériés et le Dimanche sont exclus du calcul.
+
+En outre, le document [CHUNK_ID: JUMIA-003-CHUNK-0012] précise que le Dimanche n'est pas un jour de livraison au Maroc et n'est donc pas pris en compte dans le calcul de la date de livraison estimée.
+
+Par conséquent, les jours inclus dans le calcul des délais de livraison au Maroc sont les jours ouvrés de la semaine, à savoir : Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi."
+Q003,"Lorsqu'une commande payée par Wafacash est annulée avant son expédition, les frais de service Wafacash sont-ils remboursés ?",answered,answered,True,5,5,0.4117647058823529,0.3225806451612903,1.0,"Selon le document [CHUNK_ID: JUMIA-005-CHUNK-0028], les frais de service Wafacash ne sont pas remboursables en cas d'annulation d'une commande payée par Wafacash avant son expédition. Cela est explicitement précisé dans le document [CHUNK_ID: JUMIA-005-CHUNK-0028]."
+Q004,Quelle est la capitale de la France ?,out_of_scope,out_of_scope,True,0,0,0.0,0.18181818181818182,0.0,"Je suis spécialisé dans le support e-commerce de Jumia Maroc. Je peux vous aider concernant les commandes, livraisons, paiements, retours, remboursements et garanties."
