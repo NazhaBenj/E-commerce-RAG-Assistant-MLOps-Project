@@ -167,7 +167,7 @@ stages:
     outs:
     - path: indexes/experiments/chroma_300_50
       hash: md5
-      md5: e078f058260150e59e05c537650f45f3.dir
+      md5: 4f2bb4e854100bd139ee64f258e875ea.dir
       size: 2465792
       nfiles: 1
   build_index_500_100:
@@ -193,6 +193,6 @@ stages:
     outs:
     - path: indexes/experiments/chroma_500_100
       hash: md5
-      md5: 81ca7dca50f4aa3cb8574108fd191c1e.dir
+      md5: 063a3fac2f1d07217843302b8502e76d.dir
       size: 1888256
       nfiles: 1
