@@ -1,19 +1,12 @@
-name: RAG Assistant - CI
+
+name: RAG Assistant - CI/CD
 
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - master
-      - main
   workflow_dispatch:
 
 jobs:
-  tests:
-    name: Tests and quality checks
+  quality:
+    name: Quality - Tests and Quality Gates
     runs-on: ubuntu-latest
 
     steps:
@@ -27,14 +20,72 @@ jobs:
           cache: "pip"
           cache-dependency-path: requirements.txt
 
-      - name: Upgrade pip
-        run: python -m pip install --upgrade pip
-
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Check Python syntax
         run: python -m compileall -q src app tests
 
       - name: Run automated tests
         run: pytest -v --cov=src --cov-report=term-missing
+
+      - name: Run RAG Quality Gates
+        run: |
+          python -m src.evaluation.quality_gates \
+            --report reports/evaluation/chunk_300_50_results.json \
+            --params params.yaml \
+            --output reports/evaluation/quality_gate_results.json
+
+      - name: Upload quality reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: |
+            reports/evaluation/chunk_300_50_results.json
+            reports/evaluation/quality_gate_results.json
+
+  staging:
+    name: Staging - Validate candidate
+    runs-on: ubuntu-latest
+    needs: quality
+
+    steps:
+      - name: Download quality reports
+        uses: actions/download-artifact@v4
+        with:
+          name: quality-reports
+          path: reports/evaluation
+
+      - name: Validate staging candidate
+        run: |
+          python -c "import json; r=json.load(open('reports/evaluation/quality_gate_results.json')); print('Decision:', r['decision']); assert r['decision'] == 'ACCEPTED', 'Quality Gates rejected the candidate'"
+
+      - name: Upload staging candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-candidate
+          path: reports/evaluation/quality_gate_results.json
+
+  production:
+    name: Production - Promote validated candidate
+    runs-on: ubuntu-latest
+    needs: staging
+
+    steps:
+      - name: Download staging candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: staging-candidate
+          path: production
+
+      - name: Validate production candidate
+        run: |
+          python -c "import json; r=json.load(open('production/quality_gate_results.json')); assert r['decision'] == 'ACCEPTED'; print('Production promotion authorized:', r['configuration'])"
+
+      - name: Publish validated production artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-validated
+          path: production/quality_gate_results.json

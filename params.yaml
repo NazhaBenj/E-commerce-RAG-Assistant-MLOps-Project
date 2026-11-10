@@ -52,3 +52,10 @@ evaluation:
     - answer_relevance
     - citation_rate
     - latency
+# Configuration des Quality Gates
+quality_gate:
+  min_recall_at_5: 1.00
+  min_precision_at_5: 0.25
+  min_mrr: 0.75
+  min_evaluated_questions: 3
+  require_out_of_scope_case: true

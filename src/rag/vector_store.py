@@ -43,9 +43,10 @@ class VectorStore:
         chunks: list[dict],
         embeddings: list[list[float]],
     ) -> None:
+
         if len(chunks) != len(embeddings):
             raise ValueError(
-                "Chunks and embeddings must have the same length"
+                "Le nombre de chunks doit correspondre au nombre d'embeddings."
             )
 
         if not chunks:
@@ -59,11 +60,11 @@ class VectorStore:
                 {
                     key: value
                     for key, value in chunk.items()
-                    if key not in {"chunk_id", "text"}
+                    if key not in ["chunk_id", "text"]
                 }
                 for chunk in chunks
             ],
-        )
+    )
 
     def search(
         self,

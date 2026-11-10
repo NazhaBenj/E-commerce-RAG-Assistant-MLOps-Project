@@ -1,0 +1,36 @@
+{
+    "configuration": "chunk_300_50",
+    "decision": "ACCEPTED",
+    "gates": [
+        {
+            "gate": "Recall@5",
+            "actual": 1.0,
+            "threshold": 1.0,
+            "status": "PASSED"
+        },
+        {
+            "gate": "Precision@5",
+            "actual": 0.26666666666666666,
+            "threshold": 0.25,
+            "status": "PASSED"
+        },
+        {
+            "gate": "MRR",
+            "actual": 0.7777777777777777,
+            "threshold": 0.75,
+            "status": "PASSED"
+        },
+        {
+            "gate": "Minimum evaluated questions",
+            "actual": 3,
+            "threshold": 3,
+            "status": "PASSED"
+        },
+        {
+            "gate": "Out-of-scope test case present",
+            "actual": true,
+            "threshold": true,
+            "status": "PASSED"
+        }
+    ]
+}
