@@ -1,4 +1,4 @@
-# 🛒 E-commerce RAG Assistant – MLOps Project
+#  E-commerce RAG Assistant – MLOps Project
 
 ## 1. Présentation du projet
 
