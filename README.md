@@ -291,6 +291,7 @@ Pour les exécuter :
 ```bash
 pytest -v
 ```
+<img width="1856" height="523" alt="image" src="https://github.com/user-attachments/assets/c4edc3a8-a1fa-4cea-9cda-474336491c43" />
 
 Le workflow GitHub Actions comprend trois étapes :
 
