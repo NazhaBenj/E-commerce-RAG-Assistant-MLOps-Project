@@ -74,13 +74,13 @@ stages:
       size: 880
     - path: src/rag/vector_store.py
       hash: md5
-      md5: 75b20ae0b5e615514099725ee7ea5248
-      size: 2423
+      md5: b0a51ce8024140b7861d0c61a22cb766
+      size: 2434
     outs:
     - path: indexes/chroma_ecommerce
       hash: md5
-      md5: 2008b35997eaa42d188d7c5a2a49c424.dir
-      size: 2465792
+      md5: 9f15f0389aa5d13e7a67102c604f4733.dir
+      size: 2469888
       nfiles: 1
   evaluate_retrieval:
     cmd: python -m src.evaluation.retrieval_evaluation --config all
@@ -99,13 +99,13 @@ stages:
       size: 147147
     - path: indexes/experiments/chroma_300_50
       hash: md5
-      md5: 2e26f9971a46712fc9be10c2631ceab1.dir
-      size: 2469888
+      md5: 4f2bb4e854100bd139ee64f258e875ea.dir
+      size: 2465792
       nfiles: 1
     - path: indexes/experiments/chroma_500_100
       hash: md5
-      md5: e54d0978328e18b66349a39d5e3f79d0.dir
-      size: 1892352
+      md5: 063a3fac2f1d07217843302b8502e76d.dir
+      size: 1888256
       nfiles: 1
     - path: src/evaluation/retrieval_evaluation.py
       hash: md5
@@ -125,8 +125,8 @@ stages:
       size: 1767
     - path: src/rag/vector_store.py
       hash: md5
-      md5: 75b20ae0b5e615514099725ee7ea5248
-      size: 2423
+      md5: b0a51ce8024140b7861d0c61a22cb766
+      size: 2434
     outs:
     - path: reports/evaluation/chunk_300_50_results.csv
       hash: md5
@@ -144,3 +144,55 @@ stages:
       hash: md5
       md5: 7f54e2f9125a47daecb0095511c39e2b
       size: 2991
+  build_index_300_50:
+    cmd: "python -m src.rag.build_index --chunks data/processed/experiments/chunks_300_50.jsonl
+      --index indexes/experiments/chroma_300_50\n"
+    deps:
+    - path: data/processed/experiments/chunks_300_50.jsonl
+      hash: md5
+      md5: ced0c809f9c8d1788290698add7f6c6a
+      size: 178982
+    - path: src/rag/build_index.py
+      hash: md5
+      md5: 89fb76bb559767d684f87d30b4d954b3
+      size: 3301
+    - path: src/rag/embeddings.py
+      hash: md5
+      md5: 2e082e3661684d8fbee7dda426c54c62
+      size: 880
+    - path: src/rag/vector_store.py
+      hash: md5
+      md5: b0a51ce8024140b7861d0c61a22cb766
+      size: 2434
+    outs:
+    - path: indexes/experiments/chroma_300_50
+      hash: md5
+      md5: e078f058260150e59e05c537650f45f3.dir
+      size: 2465792
+      nfiles: 1
+  build_index_500_100:
+    cmd: "python -m src.rag.build_index --chunks data/processed/experiments/chunks_500_100.jsonl
+      --index indexes/experiments/chroma_500_100\n"
+    deps:
+    - path: data/processed/experiments/chunks_500_100.jsonl
+      hash: md5
+      md5: f0ab266dab87ba7dc7b1867a708c2bda
+      size: 147147
+    - path: src/rag/build_index.py
+      hash: md5
+      md5: 89fb76bb559767d684f87d30b4d954b3
+      size: 3301
+    - path: src/rag/embeddings.py
+      hash: md5
+      md5: 2e082e3661684d8fbee7dda426c54c62
+      size: 880
+    - path: src/rag/vector_store.py
+      hash: md5
+      md5: b0a51ce8024140b7861d0c61a22cb766
+      size: 2434
+    outs:
+    - path: indexes/experiments/chroma_500_100
+      hash: md5
+      md5: 81ca7dca50f4aa3cb8574108fd191c1e.dir
+      size: 1888256
+      nfiles: 1

@@ -1,6 +1,7 @@
+
 stages:
 
-  # 1. Nettoyage et préparation du corpus
+  # 1. Préparation du corpus
   prepare_corpus:
     cmd: python -m src.ingestion.process_corpus
     deps:
@@ -11,7 +12,7 @@ stages:
     outs:
       - data/processed/source_text
 
-  # 2. Découpage des documents en chunks
+  # 2. Découpage principal
   chunk:
     cmd: >
       python -m src.rag.process_chunks
@@ -44,7 +45,35 @@ stages:
     outs:
       - indexes/chroma_ecommerce
 
-  # 4. Évaluation comparative du retrieval A/B
+  # 4. Construction de l'index expérimental A
+  build_index_300_50:
+    cmd: >
+      python -m src.rag.build_index
+      --chunks data/processed/experiments/chunks_300_50.jsonl
+      --index indexes/experiments/chroma_300_50
+    deps:
+      - data/processed/experiments/chunks_300_50.jsonl
+      - src/rag/build_index.py
+      - src/rag/embeddings.py
+      - src/rag/vector_store.py
+    outs:
+      - indexes/experiments/chroma_300_50
+
+  # 5. Construction de l'index expérimental B
+  build_index_500_100:
+    cmd: >
+      python -m src.rag.build_index
+      --chunks data/processed/experiments/chunks_500_100.jsonl
+      --index indexes/experiments/chroma_500_100
+    deps:
+      - data/processed/experiments/chunks_500_100.jsonl
+      - src/rag/build_index.py
+      - src/rag/embeddings.py
+      - src/rag/vector_store.py
+    outs:
+      - indexes/experiments/chroma_500_100
+
+  # 6. Évaluation comparative du retrieval
   evaluate_retrieval:
     cmd: python -m src.evaluation.retrieval_evaluation --config all
     deps:
