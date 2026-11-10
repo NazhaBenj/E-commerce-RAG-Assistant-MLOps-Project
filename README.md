@@ -185,6 +185,8 @@ streamlit run app/streamlit_app.py
 ```
 
 L'interface permet à l'utilisateur de :
+<img width="1545" height="884" alt="image" src="https://github.com/user-attachments/assets/581e009c-e887-4dac-9a4f-e75c4d713d40" />
+
 
 - Poser des questions sur les services de Jumia Maroc.
 - Consulter les réponses générées.
@@ -199,6 +201,8 @@ Deux configurations de chunking ont été comparées :
 - Configuration B : chunk size = 500, overlap = 100.
 
 Les expériences sont suivies avec MLflow.
+<img width="1711" height="397" alt="image" src="https://github.com/user-attachments/assets/011e5201-67ed-4159-8492-bb1b2f7c004d" />
+
 
 ### Résultats de l'évaluation Retrieval
 
